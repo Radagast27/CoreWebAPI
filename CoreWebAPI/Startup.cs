@@ -33,8 +33,13 @@ namespace CoreWebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "GetDescription",
+                    template: "{controller}/{action}/{id?}", //this line makes action the route name
+                    defaults: new { controller = "Product", action = "GetDescription" });
+            });
         }
     }
 }
